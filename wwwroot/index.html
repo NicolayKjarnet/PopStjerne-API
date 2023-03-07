@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PopStjerne API docs</title>
+    <link class="fa-solid fa-file" rel="shortcut icon" type="image/x-icon" href="images/favicon/favicon.ico">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+    <header class="header__container">
+        <h1>Documentation</h1>
+    </header>
+
+    <main class="main__container">
+
+        <section class="go-back-section">
+            <a class="url" href="http://localhost:3000/about">Back to main page</a>
+        </section>
+
+        <section class="introduction">
+            <article class="introduction__article">
+                <h2>Introduction</h2>
+                <p>This guide is designed to help you navigate the resources in this API and showing you how to make different types of queries.
+                    Please note that while the GET methods can be accessed directly from this page, <span class="marked-text">the POST, PUT, and DELETE methods require the use of Swagger.</span>
+                </p>
+                
+                <ul class="url-list">
+                    <li class="url-list__item">
+                        <strong>Base url:</strong>
+                        <a class="url base-url" href="https://localhost:7003">https://localhost:7003</a>
+                    </li>
+                    <li class="url-list__item">
+                        <strong>Swagger url:</strong>
+                        <a class="url swagger-url" href="https://localhost:7003/swagger/index.html">https://localhost:7003/swagger/index.html</a>
+                    </li>
+                </ul>
+
+                <section class="http-methods">
+                    <h3>Endpoints</h3>
+                    <nav class="table-of-contents">
+                        <ol class="table-of-contents__list">
+                            <li class="table-of-contents__item"><a href="#get-all-artists">Get all artists</a></li>
+                            <li class="table-of-contents__item"><a href="#get-artist-by-id">Get artist by id</a></li>
+                            <li class="table-of-contents__item"><a href="#get-artist-by-name">Get artist by name</a></li>
+                            <li class="table-of-contents__item"><a href="#post-artist">Post an artist</a></li>
+                            <li class="table-of-contents__item"><a href="#put-artist">Update an artist</a></li>
+                            <li class="table-of-contents__item"><a href="#delete-artist">Delete an artist</a></li>
+                        </ol>
+                    </nav>
+                </section>
+            </article>
+        </section>
+
+        <section>
+            <article>
+                <h2 id="get-all-artists">Get all artists</h2>
+                <p>You can access all artists by using the /artist endpoint.</p>
+                <h3>Example</h3>
+                <div class="method__container">
+                    <p class="method__paragraph">
+                        <span class="method get-method">GET: </span>
+                        <a href="https://localhost:7003/artist" target="_blank">https://localhost:7003/Artist</a>
+                    </p>
+                </div>
+                <pre>
+                    <code>
+[
+    {
+        id: <span class="code__id">1</span>,
+        artistName: <span class="code__string">"Astrid S"</span>,
+        genre: <span class="code__string">"Pop"</span>,
+        image: <span class="code__string">"astrids.png"</span>
+    },
+    {
+        id: <span class="code__id">2</span>,
+        artistName: <span class="code__string">"Dagny"</span>,
+        genre: <span class="code__string">"pop"</span>,
+        image: <span class="code__string">"dagny-png"</span>
+    },
+    {
+        id: <span class="code__id">3</span>,
+        artistName: <span class="code__string">"Sigrid"</span>,
+        genre: <span class="code__string">"Pop"</span>,
+        image: <span class="code__string">"sigrid.png"</span>
+    }
+]
+                    </code>
+                </pre>
+            </article>
+        </section>
+
+        <section>
+            <article>
+                <h2 id="get-artist-by-id">Get an artist by id</h2>
+                <p>You can access a single artist by using the artists id as a parameter.</p>
+                <h3>Example</h3>
+                <div class="method__container">
+                    <p class="method__paragraph">
+                        <span class="method get-method">GET: </span>
+                        <a href="https://localhost:7003/artist/2" target="_blank">https://localhost:7003/Artist/2</a>
+                    </p>
+                </div>
+                <pre>
+                    <code>
+{
+    id: <span class="code__id">2</span>,
+    artistName: <span class="code__string">"Dagny"</span>,
+    genre: <span class="code__string">"pop"</span>,
+    image: <span class="code__string">"dagny.png"</span>
+}
+                    </code>
+                </pre>
+            </article>
+        </section>
+
+        <section>
+            <article>
+                <h2 id="get-artist-by-name">Get an artist by name</h2>
+                <p>You can access an artist (or several if the name has more than one matches) by searching for his/her name.</p>
+                <h3>Example</h3>
+                <div class="method__container">
+                    <p class="method__paragraph">
+                        <span class="method get-method">GET: </span>
+                        <a href="https://localhost:7003/Artist/GetArtistByName?artistName=arif" target="_blank">https://localhost:7003/Artist/GetArtistByName?artistName=arif</a>
+                    </p>
+                </div>
+                <pre>
+                    <code>
+{
+    id: <span class="code__id">5</span>,
+    artistName: <span class="code__string">"Arif"</span>,
+    genre: <span class="code__string">"RnB"</span>,
+    image: <span class="code__string">"arif.png"</span>
+}                       
+                    </code>
+                </pre>
+            </article>
+        </section>
+
+        <section>
+            <article>
+                <h2 id="post-artist">Post an artist</h2>
+                <p>You can post an artist by adding all parameters: artistName, genre and image. It is possible to post without image, but note that it's not recommended. Id is auto-incremented by default, and can be left at 0.</p>
+                <h3>Example</h3>
+                <div class="method__container">
+                    <p class="method__paragraph">
+                        <span class="method post-method">POST: </span>
+                        <a href="https://localhost:7003/artist" target="_blank">https://localhost:7003/Artist</a>
+                    </p>
+                </div>
+                <pre>
+                    <code>
+{
+    id: <span class="code__id">int</span>,
+    artistName: <span class="code__string">"string"</span>,
+    genre: <span class="code__string">"string"</span>,
+    image: <span class="code__string">"string"</span>
+}
+                    </code>
+                </pre>
+            </article>
+        </section>
+
+        <section>
+            <article>
+                <h2 id="put-artist">Update an artist</h2>
+                <p>You can update an artist by altering the parameters you want to change. You won't be able to alter the id as it is auto-incremented in the database, but artist name, genre and image can be changed.</p>
+                <h3>Example</h3>
+                <div class="method__container">
+                    <p class="method__paragraph">
+                        <span class="method put-method">PUT: </span>
+                        <a href="https://localhost:7003/artist" target="_blank">https://localhost:7003/Artist</a>
+                    </p>
+                </div>
+                <pre>
+                    <code>
+{
+    id: <span class="code__id">int</span>,
+    artistName: <span class="code__string">"string"</span>,
+    genre: <span class="code__string">"string"</span>,
+    image: <span class="code__string">"string"</span>
+}
+                    </code>
+                </pre>
+            </article>
+        </section>
+
+        <section>
+            <article>
+                <h2 id="delete-artist">Delete an artist</h2>
+                <p>You can delete an artist by providing the id of the artist you want to delete from the database.</p>
+                <h3>Example</h3>
+                <div class="method__container">
+                    <p class="method__paragraph">
+                        <span class="method delete-method">DELETE: </span>
+                        <a href="https://localhost:7003/artist" target="_blank">https://localhost:7003/Artist</a>
+                    </p>
+                </div>
+                <pre>
+                    <code>
+{
+    id: <span class="code__id">int</span>
+}
+                    </code>
+                </pre>
+            </article>
+        </section>
+    </main>
+
+    <footer></footer>
+
+</body>
+</html>
